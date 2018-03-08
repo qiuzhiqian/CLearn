@@ -28,10 +28,12 @@ typedef struct{
 }BankCard_t;
 
 //定义人数据结构
-typedef struct{
+typedef struct people{
     BYTE *m_name;   //姓名，因为姓名的长度不固定，所以此处改用指针表示，然后通过malloc来分配空间
     BYTE m_age;
     sex_e m_sex;   //性别，=male标识男性，=female标识女性
+    struct people *m_friend;    //朋友，此处为难点，注意理解此处为什么不能直接用people_t
+    int m_friendCnt;    //朋友个数
     BankCard_t m_bc;    //银行卡
     void (*m_run)(BYTE *name);  //拥有的功能,跑步，函数指针的定义及使用
 }people_t;
@@ -105,6 +107,25 @@ int main(int argc,char **argv)
     tom.m_age=15;
     tom.m_sex=male;
 
+    people_t *friend=NULL;
+    friend=malloc(sizeof(people_t)*3);  //申请3个people空间来作为朋友
+    people_t *tmpfriend=friend;     //临时指针
+
+    tmpfriend->m_name=malloc(4);
+    memcpy(tmpfriend->m_name,"jack",4); //每个朋友成员暂时值初始化姓名
+    tmpfriend++;
+
+    tmpfriend->m_name=malloc(4);
+    memcpy(tmpfriend->m_name,"mary",4);
+    tmpfriend++;
+
+    tmpfriend->m_name=malloc(5);
+    memcpy(tmpfriend->m_name,"james",5);
+    tmpfriend++;
+
+    tom.m_friend=friend;
+    tom.m_friendCnt=3;
+
     BYTE tempBank[]="zhaoshang bank";
     memcpy(tom.m_bc.m_bankName,tempBank,sizeof(tempBank));
     tom.m_bc.m_money=8000;
@@ -118,6 +139,14 @@ int main(int argc,char **argv)
         debug(DB_NORMAL,("\tsex: male.\n"));
     else
         debug(DB_NORMAL,("\tsex: female.\n"));
+
+    debug(DB_NORMAL,("\tfriend: \n"));
+    tmpfriend=tom.m_friend;
+    for(int i=0;i<tom.m_friendCnt;i++)
+    {
+        debug(DB_NORMAL,("\t\t%s.\n",tmpfriend->m_name));
+        tmpfriend++;
+    }
 
     debug(DB_NORMAL,("\thas a bank card:\n"));
     debug(DB_NORMAL,("\t\tname: %s.\n",tom.m_bc.m_bankName));

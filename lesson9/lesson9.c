@@ -81,7 +81,7 @@ int GoFemaleSchool(people_t *p)     //结构体指针传参的使用
     else
     {
         debug(DB_WARN,("该同学时残疾人员.\n",p->m_bc.m_money));
-        return -1;
+        return 1;
     }
 }
 
@@ -137,6 +137,9 @@ int main(int argc,char **argv)
         default:
             debug(DB_NORMAL,("invaild return value.\n"));      //无效的返回值
     }
+
+    //内存释放，跟malloc相对应
+    free(tom.m_name);
 
     return 0;
 }

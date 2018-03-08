@@ -16,11 +16,11 @@
 
 # lesson1
 
-基本的结构体定义、赋值、使用等
+基本的结构体定义、赋值、使用等，memset、memcpy等使用  
 
 # lesson2
 
-使用typedef对类型进行取别名
+使用typedef对类型进行取别名  
 
 # lesson3
 
@@ -28,7 +28,7 @@ enum的定义及使用
 
 # lesson4
 
-指针动态分配内存
+指针动态分配内存，malloc以及free函数使用
 
 # lesson5
 
@@ -50,5 +50,9 @@ enum的定义及使用
 结构体指针传参
 
 # lesson10
+
+一种典型的goto用法，其他的goto不太推荐
+
+# lesson11
 
 更复杂的结构体嵌套以及嵌套结构体自己的指针

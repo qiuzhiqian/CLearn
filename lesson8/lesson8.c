@@ -80,5 +80,8 @@ int main(int argc,char **argv)
         debug(DB_NORMAL,("\n"));
     }
 
+    //内存释放，跟malloc相对应
+    free(tom.m_name);
+
     return 0;
 }

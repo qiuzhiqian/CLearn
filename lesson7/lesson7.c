@@ -65,5 +65,8 @@ int main(int argc,char **argv)
     debug(DB_NORMAL,("\t\tname: %s.\n",tom.m_bc.m_bankName));
     debug(DB_NORMAL,("\t\tmoney: %d.\n",tom.m_bc.m_money));
 
+    //内存释放，跟malloc相对应
+    free(tom.m_name);
+    
     return 0;
 }
